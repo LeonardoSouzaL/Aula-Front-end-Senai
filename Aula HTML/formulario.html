@@ -66,6 +66,38 @@
 
       <label for="data">Data:</label>
       <input type="date" name="data" id="data" min="1900-01-01" max="2020-12-31">
+      <br>
+      <label for="cor">Escolha uma cor</label>
+      <input type="color">
+
+      <label for="">Data e Hora:</label>
+      <input type="datetime-local">
+
+      <label for="">Enviar arquivo:</label>
+      <input type="file" accept="image/*">
+      <br>
+
+      <label for="">Seu site</label>
+      <input type="url">
+      <button type="submit">Enviar</button>
+
+      <label for="">Telefone</label>
+      <input type="tel" pattern="[0-9]+" inputmode="numeric">
+
+      <label for="">Buscar</label>
+      <input type="search">
+
+      <label for="">Escolha um navegador</label>
+      <input list="navegadores">
+      <datalist>
+        <option value="Chrome"></option>
+        <option value="Firefox"></option>
+        <option value="Edge"></option>
+        <option value="Safari"></option>
+      </datalist>
+
+      <label for="">progresso:</label>
+      <progress value="65" max="100"></progress>
     </form>
   </body>
 </html>
