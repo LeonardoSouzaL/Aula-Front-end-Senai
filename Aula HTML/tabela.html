@@ -14,57 +14,82 @@ A tabela possui uma semântica dela mesma
 <style></style> = Pode ser colocado no Head para fazer alterações rapidas, porem, não é utilizado dessa forma.
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        /*Estilo da tabela*/
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 40px;
-        }
-        
+      /*Estilo da tabela*/
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 40px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 70%;
+        margin-top: 10px;
+      }
+      caption {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #4885ef;
+      }
+      tfoot td {
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
-     <h1>Tabela</h1>
-<table>
-    <caption>Cadastro de Clientes</caption>
-    <thead>
+  </head>
+  <body>
+    <h1>Tabela</h1>
+    <table>
+      <caption>
+        Cadastro de Clientes
+      </caption>
+      <thead>
         <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Cargo</th>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Cargo</th>
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr>
-            <td>Leonardo Souza Leite</td>
-            <td>25 anos</td>
-            <td>leonardo@email.com</td>
-            <td>(11) 993213200</td>
-            <td>CLT</td>
+          <td>Leonardo Souza Leite</td>
+          <td>25 anos</td>
+          <td>leonardo@email.com</td>
+          <td>(11) 993213200</td>
+          <td>CLT</td>
         </tr>
         <tr>
-           <td>Vittoria Fiuza</td>
-            <td>24 anos</td>
-            <td>vittoria@email.com</td>
-            <td>(11) 993213200</td>
-            <td>CLT</td> 
+          <td>Vittoria Fiuza</td>
+          <td>24 anos</td>
+          <td>vittoria@email.com</td>
+          <td>(11) 993213200</td>
+          <td>CLT</td>
         </tr>
-    </tbody>
-    <tfoot>
+      </tbody>
+      <tfoot>
         <tr>
-            <td colspan="4"></td>
-            <td>Total</td>
+          <td colspan="4"></td>
+          <td>Total</td>
         </tr>
-    </tfoot>
-</table> 
-</body>
+      </tfoot>
+    </table>
+  </body>
 </html>
-

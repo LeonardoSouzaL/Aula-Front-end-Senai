@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="receber_dados.html" method="POST">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="name" />
+      <br />
+
+      <label for="email">e-mail:</label>
+      <input type="email" name="email" id="email" />
+      <br />
+
+      <input type="radio" name="sexo" value="masculino" /> Masculino
+      <input type="radio" name="sexo" value="feminino" /> Feminino
+      <br />
+
+      <input type="checkbox" name="hobbies[]" />Ouvir música
+      <input type="checkbox" name="hobbies[]" />Dar aula no Valorant
+      <input type="checkbox" name="hobbies[]" />Ver anime
+      <br />
+
+      <select name="" id="estado">
+        <option value="">Selecione</option>
+        <option value="acre">Acre</option>
+        <option value="são_paulo">São Paulo</option>
+        <option value="minas_gerais">Minas Gerais</option>
+        <option value="brasilia">Brasília</option>
+      </select>
+      <br />
+
+      <fieldset>
+        <legend>Dados Pessoais</legend>
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" />
+        <label for="email">e-mail</label>
+        <input type="email" id="email" />
+      </fieldset>
+      <br />
+
+      <label for="idade">Idade:</label>
+      <input
+        type="number"
+        id="idade"
+        name="idade"
+        min="18"
+        max="120"
+        step="1"
+        value="28"
+      />
+      <br />
+
+      <label for="points">Pontuação</label>
+      <input type="range" id="points" name="points" min="0" max="20" />
+      <br />
+
+      <input type="text" placeholder="Digite seu nome">
+      <input type="text" placeholder="Digite seu email" required>
+      <input type="text" placeholder="Seu sobrenome" autofocus>
+      <input type="text" placeholder="Não editável" disabled>
+      <br>
+
+      <label for="data">Data:</label>
+      <input type="date" name="data" id="data" min="1900-01-01" max="2020-12-31">
+    </form>
+  </body>
+</html>
