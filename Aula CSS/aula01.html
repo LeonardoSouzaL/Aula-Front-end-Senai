@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 1 — CSS Base</title>
+    <link rel="stylesheet" href="aula01.css">
+    </head>
+<body>
+
+<div class="pagina">
+
+    <div class="titulo-aula">
+        <h1>🎨 Aula 1 — CSS Base</h1>
+        <p>Seletores · Cores · Texto · Box Model · Display · Pseudo-classes</p>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 1: O QUE É CSS E SINTAXE
+         ===================================================== -->
+    <div class="conceito">
+        <h2>O que é CSS e como funciona a sintaxe?</h2>
+        <p class="subtitulo">
+            CSS (Cascading Style Sheets) é a linguagem que diz ao navegador como os elementos HTML devem parecer.
+        </p>
+
+        <p style="line-height: 1.7; margin-bottom: 14px;">
+            Sem CSS, toda página seria texto preto em fundo branco. O CSS separa o <strong>conteúdo</strong>
+            (HTML) da <strong>aparência</strong> (CSS) — uma boa prática fundamental do desenvolvimento web.
+        </p>
+
+        <div class="codigo">
+            <span class="comment">/* Sintaxe básica do CSS: */</span><br><br>
+            <span class="sel">seletor</span> {<br>
+            &nbsp;&nbsp;<span class="prop">propriedade</span>: <span class="val">valor</span>;<br>
+            &nbsp;&nbsp;<span class="prop">propriedade</span>: <span class="val">valor</span>;<br>
+            }<br><br>
+            <span class="comment">/* Exemplos reais: */</span><br>
+            <span class="sel">h1</span> { <span class="prop">color</span>: <span class="val">red</span>; <span class="prop">font-size</span>: <span class="val">32px</span>; }<br>
+            <span class="sel">.titulo</span> { <span class="prop">background-color</span>: <span class="val">#1a252f</span>; }<br>
+            <span class="sel">#logo</span> { <span class="prop">letter-spacing</span>: <span class="val">3px</span>; }
+        </div>
+
+        <div class="dica">
+            ✅ <strong>Regra de ouro da sintaxe:</strong> cada declaração termina com <strong>ponto e vírgula (;)</strong>.
+            Esquecer o ; é um dos erros mais comuns — e o CSS seguinte pode quebrar silenciosamente.
+        </div>
+
+        <div class="alerta">
+            ⚠️ <strong>CSS é "silencioso" no erro:</strong> se você errar uma propriedade ou valor,
+            o navegador simplesmente ignora aquela linha sem avisar. Sempre abra o DevTools (F12)
+            para ver o que foi aplicado e o que foi ignorado.
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 2: SELETORES
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Seletores — Como o CSS encontra os elementos</h2>
+        <p class="subtitulo">
+            O seletor diz ao CSS <em>quem</em> vai receber o estilo. Cada tipo tem um alcance diferente.
+        </p>
+
+        <!-- TAG -->
+        <div class="variacao">
+            <h4>1. Seletor de tag — afeta TODOS os elementos daquele tipo</h4>
+            <div class="codigo">
+                <span class="sel">p</span> { <span class="prop">background-color</span>: <span class="val">#d5f5e3</span>; <span class="prop">padding</span>: <span class="val">8px</span>; }
+                <br><span class="comment">/* Todos os &lt;p&gt; da página ficam verdinhos */</span>
+            </div>
+            <div class="demo demo-seletor-tag">
+                <p>Eu sou um parágrafo — recebi o estilo!</p>
+                <p>Este também é um &lt;p&gt; — também recebeu!</p>
+                <p>Todo &lt;p&gt; da página é afetado.</p>
+            </div>
+        </div>
+
+        <!-- CLASSE -->
+        <div class="variacao">
+            <h4>2. Seletor de classe (.nome) — afeta quem tiver aquela class=</h4>
+            <div class="codigo">
+                <span class="sel">.destaque-aula</span> { <span class="prop">background-color</span>: <span class="val">#fdebd0</span>; <span class="prop">font-weight</span>: <span class="val">bold</span>; }
+                <br><span class="comment">/* Só elementos com class="destaque-aula" */</span>
+            </div>
+            <div class="demo">
+                <p style="margin-bottom:8px; font-size:0.85rem; color:#888;">Parágrafos abaixo — só o com a classe é estilizado:</p>
+                <p style="padding:8px; margin-bottom:6px;">Parágrafo comum — sem classe, sem estilo especial.</p>
+                <p class="destaque-aula">Parágrafo com class="destaque-aula" — estilizado!</p>
+                <p style="padding:8px;">Outro parágrafo comum — também sem estilo.</p>
+            </div>
+        </div>
+
+        <!-- ID -->
+        <div class="variacao">
+            <h4>3. Seletor de ID (#nome) — afeta UM único elemento</h4>
+            <div class="codigo">
+                <span class="sel">#unico-demo</span> { <span class="prop">background-color</span>: <span class="val">#d6eaf8</span>; <span class="prop">border</span>: <span class="val">2px solid #2980b9</span>; }
+                <br><span class="comment">/* Só o elemento com id="unico-demo" — único na página */</span>
+            </div>
+            <div class="demo">
+                <div style="padding:8px; margin-bottom:6px; background:#f8f9fa; border-radius:4px; font-size:0.88rem;">
+                    div sem ID — nenhum estilo especial
+                </div>
+                <div id="unico-demo">div com id="unico-demo" — estilizado de forma única!</div>
+                <p style="margin-top:8px; font-size:0.8rem; color:#888;">
+                    ⚠️ IDs devem ser únicos — só pode existir um por página!
+                    Use classes para estilo (reutilizável). Use IDs para âncoras e JavaScript.
+                </p>
+            </div>
+        </div>
+
+        <!-- DESCENDENTE -->
+        <div class="variacao">
+            <h4>4. Seletor descendente — "pai filho" afeta o filho DENTRO do pai</h4>
+            <div class="codigo">
+                <span class="sel">.container-desc strong</span> { <span class="prop">color</span>: <span class="val">#e74c3c</span>; }<br>
+                <span class="comment">/* Só o &lt;strong&gt; dentro de .container-desc fica vermelho */</span>
+            </div>
+            <div class="demo">
+                <div class="container-desc" style="background:#eee; padding:12px; border-radius:4px; margin-bottom:8px; font-size:0.88rem;">
+                    <p>Dentro de .container-desc: este <strong>strong fica vermelho</strong> pelo seletor descendente.</p>
+                </div>
+                <div style="background:#eee; padding:12px; border-radius:4px; font-size:0.88rem;">
+                    <p>Fora de .container-desc: este <strong>strong não é afetado</strong> — permanece normal.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATRIBUTO -->
+        <div class="variacao">
+            <h4>5. Seletor de atributo — [atributo="valor"]</h4>
+            <div class="codigo">
+                <span class="sel">input[type="text"]</span>  { <span class="prop">border</span>: <span class="val">3px solid #27ae60</span>; } <span class="comment">/* verde */</span><br>
+                <span class="sel">input[type="email"]</span> { <span class="prop">border</span>: <span class="val">3px solid #e74c3c</span>; } <span class="comment">/* vermelho */</span>
+            </div>
+            <div class="demo demo-atributo">
+                <p style="margin-bottom:10px; font-size:0.85rem; color:#888;">Mesma tag &lt;input&gt;, estilos diferentes pelo atributo type:</p>
+                <input type="text"  placeholder="input type=text (borda verde)">
+                <input type="email" placeholder="input type=email (borda vermelha)">
+            </div>
+            <div class="dica">
+                ✅ Muito útil para formulários: estilize campos específicos sem precisar adicionar classes em cada um.
+            </div>
+        </div>
+
+        <!-- MÚLTIPLOS -->
+        <div class="variacao">
+            <h4>6. Múltiplos seletores com vírgula — aplica as mesmas regras para todos</h4>
+            <div class="codigo">
+                <span class="sel">h1, h2, h3</span> { <span class="prop">color</span>: <span class="val">#2c3e50</span>; } <span class="comment">/* Evita repetição */</span><br>
+                <span class="sel">input[type="text"], input[type="email"], select</span> { <span class="prop">width</span>: <span class="val">100%</span>; }
+            </div>
+            <div class="dica">
+                ✅ Separe seletores com vírgula para aplicar as mesmas propriedades a vários elementos de uma vez — menos código, mais organização.
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         CONCEITO 3: ESPECIFICIDADE E CASCATA
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Especificidade e Cascata — Quem vence o conflito?</h2>
+        <p class="subtitulo">
+            Quando duas regras tentam estilizar o mesmo elemento, o CSS tem critérios para decidir qual prevalece.
+        </p>
+
+        <p style="line-height:1.7; margin-bottom:14px;">
+            Pense na especificidade como uma <strong>pontuação</strong>. Quem tem mais pontos, ganha.
+            Se empatarem, vence o que vem <strong>por último no arquivo CSS</strong> (a cascata).
+        </p>
+
+        <div class="codigo">
+            <span class="sel">p</span>             { <span class="prop">color</span>: <span class="val">gray</span>;  }  <span class="comment">/* Tag:    baixa especificidade (0,0,1) */</span><br>
+            <span class="sel">.classe</span>       { <span class="prop">color</span>: <span class="val">blue</span>;  }  <span class="comment">/* Classe: média  (0,1,0) */</span><br>
+            <span class="sel">#id</span>           { <span class="prop">color</span>: <span class="val">red</span>;   }  <span class="comment">/* ID:     alta   (1,0,0) */</span><br>
+            <span class="sel">style=""</span>       { <span class="prop">color</span>: <span class="val">green</span>; }  <span class="comment">/* Inline: máxima (1,0,0,0) */</span>
+        </div>
+
+        <div class="demo">
+            <div class="caixa-spec spec-tag">Seletor de tag — menor especificidade (cinza)</div>
+            <div class="caixa-spec spec-classe">Seletor de classe — especificidade média (azul)</div>
+            <div class="caixa-spec spec-id">Seletor de ID — especificidade alta (vermelho)</div>
+            <div class="caixa-spec spec-inline" style="background-color:#27ae60;">Inline style="" — especificidade máxima (verde)</div>
+        </div>
+
+        <div class="alerta">
+            ⚠️ <strong>Evite !important</strong> — ele força uma regra a ganhar de tudo, mas quebra
+            a lógica da cascata e dificulta a manutenção do código. Se você precisar de !important,
+            geralmente é sinal de que a estrutura dos seletores precisa ser revisada.
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 4: CORES
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Cores — As 4 formas de escrever</h2>
+        <p class="subtitulo">
+            CSS aceita cores de várias formas. Cada uma tem seus usos.
+        </p>
+
+        <div class="codigo">
+            <span class="comment">/* 1. Nome (só para cores básicas) */</span><br>
+            <span class="prop">color</span>: <span class="val">tomato</span>;<br><br>
+            <span class="comment">/* 2. Hexadecimal — o mais usado em design */</span><br>
+            <span class="prop">color</span>: <span class="val">#e74c3c</span>;  <span class="comment">/* #RRGGBB — R=vermelho G=verde B=azul em hex */</span><br>
+            <span class="prop">color</span>: <span class="val">#e74</span>;     <span class="comment">/* Atalho: #RGB (equivale a #ee7744) */</span><br><br>
+            <span class="comment">/* 3. RGB — valores de 0 a 255 */</span><br>
+            <span class="prop">color</span>: <span class="val">rgb(231, 76, 60)</span>;<br><br>
+            <span class="comment">/* 4. RGBA — RGB + Alpha (transparência: 0=invisível, 1=sólido) */</span><br>
+            <span class="prop">color</span>: <span class="val">rgba(231, 76, 60, 0.5)</span>; <span class="comment">/* 50% de opacidade */</span>
+        </div>
+
+        <div class="grade-cores">
+            <div class="amostra-cor cor-nome"><span>name: tomato</span></div>
+            <div class="amostra-cor cor-hex3"><span>#e74 (hex 3)</span></div>
+            <div class="amostra-cor cor-hex6"><span>#e74c3c (hex 6)</span></div>
+            <div class="amostra-cor cor-rgb"><span>rgb(231,76,60)</span></div>
+            <div class="amostra-cor cor-rgba50"><span>rgba(..., 0.5)</span></div>
+            <div class="amostra-cor cor-rgba20"><span>rgba(..., 0.2)</span></div>
+        </div>
+
+        <p style="margin: 14px 0 8px; font-weight: bold; font-size: 0.9rem;">Por que rgba importa? Veja sobre fundos coloridos:</p>
+        <div class="fundo-rgba">
+            <div class="camada-rgba r1">alpha: 1.0</div>
+            <div class="camada-rgba r2">alpha: 0.7</div>
+            <div class="camada-rgba r3">alpha: 0.4</div>
+            <div class="camada-rgba r4">alpha: 0.1</div>
+        </div>
+
+        <div class="dica">
+            ✅ <strong>Use rgba para:</strong> sombras suaves (<code>box-shadow</code>, <code>text-shadow</code>),
+            overlays semitransparentes, e efeitos de camada sobre imagens ou fundos coloridos.
+        </div>
+
+        <table class="tabela-aula" style="margin-top:16px;">
+            <thead>
+                <tr><th>Formato</th><th>Exemplo</th><th>Quando usar</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Nome</td><td><code>red, blue, tomato</code></td><td>Testes rápidos. Poucos nomes disponíveis.</td></tr>
+                <tr><td>Hexadecimal</td><td><code>#e74c3c</code></td><td>O mais usado. Fácil de copiar do Figma/Zeplin.</td></tr>
+                <tr><td>RGB</td><td><code>rgb(231, 76, 60)</code></td><td>Quando você precisa ajustar canais individualmente.</td></tr>
+                <tr><td>RGBA</td><td><code>rgba(0, 0, 0, 0.5)</code></td><td>Sempre que precisar de transparência.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 5: PROPRIEDADES DE TEXTO
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Propriedades de Texto</h2>
+        <p class="subtitulo">
+            CSS tem um conjunto rico de propriedades para controlar como o texto aparece.
+        </p>
+
+        <!-- font-size -->
+        <div class="variacao">
+            <h4>font-size — Tamanho da fonte</h4>
+            <div class="codigo">
+                <span class="prop">font-size</span>: <span class="val">12px</span>;  <span class="comment">/* pequeno */</span><br>
+                <span class="prop">font-size</span>: <span class="val">18px</span>;  <span class="comment">/* médio */</span><br>
+                <span class="prop">font-size</span>: <span class="val">28px</span>;  <span class="comment">/* grande */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-size-sm">font-size: 12px — texto pequeno</p>
+                <p class="t-size-md">font-size: 18px — texto médio</p>
+                <p class="t-size-lg">font-size: 28px — texto grande</p>
+            </div>
+        </div>
+
+        <!-- font-weight -->
+        <div class="variacao">
+            <h4>font-weight — Espessura da fonte</h4>
+            <div class="codigo">
+                <span class="prop">font-weight</span>: <span class="val">normal</span>;  <span class="comment">/* igual a 400 */</span><br>
+                <span class="prop">font-weight</span>: <span class="val">bold</span>;    <span class="comment">/* igual a 700 */</span><br>
+                <span class="prop">font-weight</span>: <span class="val">900</span>;     <span class="comment">/* mais pesado (depende da fonte) */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-weight-n">font-weight: normal — texto regular</p>
+                <p class="t-weight-b">font-weight: bold — texto em negrito</p>
+                <p class="t-weight-900">font-weight: 900 — texto extra bold</p>
+            </div>
+        </div>
+
+        <!-- font-style -->
+        <div class="variacao">
+            <h4>font-style — Itálico</h4>
+            <div class="codigo">
+                <span class="prop">font-style</span>: <span class="val">italic</span>;  <span class="comment">/* itálico */</span><br>
+                <span class="prop">font-style</span>: <span class="val">normal</span>;   <span class="comment">/* cancela itálico (útil em herança) */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-style-i">font-style: italic — texto em itálico</p>
+                <p class="t-style-n">font-style: normal — texto normal</p>
+            </div>
+        </div>
+
+        <!-- text-align -->
+        <div class="variacao">
+            <h4>text-align — Alinhamento do texto</h4>
+            <div class="codigo">
+                <span class="prop">text-align</span>: <span class="val">left</span>;    <span class="comment">/* padrão */</span><br>
+                <span class="prop">text-align</span>: <span class="val">center</span>;<br>
+                <span class="prop">text-align</span>: <span class="val">right</span>;
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-align-l">text-align: left — alinhado à esquerda (padrão)</p>
+                <p class="t-align-c">text-align: center — centralizado</p>
+                <p class="t-align-r">text-align: right — alinhado à direita</p>
+            </div>
+        </div>
+
+        <!-- text-decoration -->
+        <div class="variacao">
+            <h4>text-decoration — Sublinhado e outros efeitos</h4>
+            <div class="codigo">
+                <span class="prop">text-decoration</span>: <span class="val">underline</span>;     <span class="comment">/* sublinhado */</span><br>
+                <span class="prop">text-decoration</span>: <span class="val">line-through</span>;  <span class="comment">/* tachado */</span><br>
+                <span class="prop">text-decoration</span>: <span class="val">none</span>;          <span class="comment">/* remove sublinhado (links!) */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-decor-u">text-decoration: underline — sublinhado</p>
+                <p class="t-decor-lt">text-decoration: line-through — texto tachado</p>
+                <p class="t-decor-n">text-decoration: none — remove o sublinhado de links</p>
+            </div>
+        </div>
+
+        <!-- text-transform -->
+        <div class="variacao">
+            <h4>text-transform — Capitalização sem alterar o HTML</h4>
+            <div class="codigo">
+                <span class="prop">text-transform</span>: <span class="val">uppercase</span>;   <span class="comment">/* TUDO MAIÚSCULO */</span><br>
+                <span class="prop">text-transform</span>: <span class="val">lowercase</span>;   <span class="comment">/* tudo minúsculo */</span><br>
+                <span class="prop">text-transform</span>: <span class="val">capitalize</span>;  <span class="comment">/* Primeira Letra Maiúscula */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-transform-u">text-transform: uppercase — assim fica</p>
+                <p class="t-transform-l">text-transform: LOWERCASE — ASSIM FICA</p>
+                <p class="t-transform-c">text-transform: capitalize — assim fica</p>
+            </div>
+        </div>
+
+        <!-- letter e word spacing -->
+        <div class="variacao">
+            <h4>letter-spacing e word-spacing — Espaçamento entre letras e palavras</h4>
+            <div class="codigo">
+                <span class="prop">letter-spacing</span>: <span class="val">6px</span>;   <span class="comment">/* espaço entre letras */</span><br>
+                <span class="prop">word-spacing</span>: <span class="val">12px</span>;    <span class="comment">/* espaço entre palavras */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-spacing-l">letter-spacing: 6px — espaçado assim</p>
+                <p class="t-spacing-w">word-spacing: 12px — palavras afastadas</p>
+            </div>
+        </div>
+
+        <!-- line-height -->
+        <div class="variacao">
+            <h4>line-height — Altura de linha (essencial para leitura)</h4>
+            <div class="codigo">
+                <span class="prop">line-height</span>: <span class="val">1.2</span>;  <span class="comment">/* muito comprimido */</span><br>
+                <span class="prop">line-height</span>: <span class="val">1.6</span>;  <span class="comment">/* confortável para leitura (recomendado) */</span><br>
+                <span class="prop">line-height</span>: <span class="val">2.2</span>;  <span class="comment">/* muito espaçado */</span>
+            </div>
+            <div class="demo">
+                <p class="t-lh-tight">line-height: 1.2 — Este texto está com espaçamento muito comprimido entre as linhas. Fica difícil de ler quando tem mais de uma linha de conteúdo.</p>
+                <p class="t-lh-normal">line-height: 1.6 — Este texto está com espaçamento confortável. É o valor ideal para corpo de texto em blogs, artigos e sites em geral.</p>
+                <p class="t-lh-loose">line-height: 2.2 — Este texto está muito espaçado. Pode ser usado pontualmente, mas cansa em textos longos.</p>
+            </div>
+        </div>
+
+        <!-- text-shadow -->
+        <div class="variacao">
+            <h4>text-shadow — Sombra no texto</h4>
+            <div class="codigo">
+                <span class="comment">/* deslocamento-X | deslocamento-Y | desfoque | cor */</span><br>
+                <span class="prop">text-shadow</span>: <span class="val">2px 2px 5px rgba(0,0,0,0.5)</span>;  <span class="comment">/* suave */</span><br>
+                <span class="prop">text-shadow</span>: <span class="val">3px 3px 0px #e74c3c</span>;          <span class="comment">/* nítida colorida */</span>
+            </div>
+            <div class="demo demo-texto">
+                <p class="t-shadow">Sombra suave com desfoque</p>
+                <p class="t-shadow-col">Sombra nítida e colorida</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 6: BOX MODEL
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Box Model — O modelo de caixa do CSS</h2>
+        <p class="subtitulo">
+            Todo elemento HTML é uma caixa retangular composta por 4 camadas.
+            Entender isso resolve 90% dos problemas de layout.
+        </p>
+
+        <!-- Diagrama -->
+        <div class="box-model-diagrama">
+            MARGIN (espaço externo — fora da caixa)
+            <div class="borda-layer">
+                BORDER (a borda visível da caixa)
+                <div class="padding-layer">
+                    PADDING (espaço interno — entre borda e conteúdo)
+                    <div class="content-layer">
+                        CONTENT<br>
+                        (texto, imagem, etc.)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dica">
+            ✅ <strong>Regra mental:</strong> margin afasta os elementos uns dos outros.
+            Padding cria espaço respiração dentro da caixa.
+        </div>
+
+        <!-- MARGIN -->
+        <div class="variacao">
+            <h4>margin — Espaço externo (entre elementos)</h4>
+            <div class="codigo">
+                <span class="prop">margin</span>: <span class="val">4px</span>;   <span class="comment">/* pequena */</span><br>
+                <span class="prop">margin</span>: <span class="val">20px</span>;  <span class="comment">/* média */</span><br>
+                <span class="prop">margin</span>: <span class="val">40px</span>;  <span class="comment">/* grande */</span>
+            </div>
+            <div class="demo demo-margin">
+                <div class="caixa-base margin-pequena" style="padding:8px;">margin: 4px</div>
+                <div class="caixa-base margin-media" style="padding:8px;">margin: 20px</div>
+                <div class="caixa-base margin-grande" style="padding:8px;">margin: 40px</div>
+            </div>
+        </div>
+
+        <!-- PADDING -->
+        <div class="variacao">
+            <h4>padding — Espaço interno (dentro da caixa)</h4>
+            <div class="codigo">
+                <span class="prop">padding</span>: <span class="val">4px</span>;   <span class="comment">/* apertado */</span><br>
+                <span class="prop">padding</span>: <span class="val">16px</span>;  <span class="comment">/* confortável */</span><br>
+                <span class="prop">padding</span>: <span class="val">32px</span>;  <span class="comment">/* espaçoso */</span>
+            </div>
+            <div class="demo">
+                <div class="caixa-base padding-pequeno" style="margin-bottom:8px;">padding: 4px</div>
+                <div class="caixa-base padding-medio" style="margin-bottom:8px;">padding: 16px</div>
+                <div class="caixa-base padding-grande">padding: 32px</div>
+            </div>
+        </div>
+
+        <!-- SHORTHAND -->
+        <div class="variacao">
+            <h4>Shorthand de margin e padding — 1, 2 ou 4 valores</h4>
+            <div class="codigo">
+                <span class="prop">padding</span>: <span class="val">20px</span>;           <span class="comment">/* 1 valor: todos os lados iguais */</span><br>
+                <span class="prop">padding</span>: <span class="val">8px 40px</span>;       <span class="comment">/* 2 valores: vertical | horizontal */</span><br>
+                <span class="prop">padding</span>: <span class="val">4px 20px 12px 40px</span>; <span class="comment">/* 4 valores: topo | direita | baixo | esquerda (horário) */</span>
+            </div>
+            <div class="demo demo-shorthand">
+                <div class="sh-1v" style="text-align:center; font-size:0.82rem;">padding: 20px — todos os lados iguais</div>
+                <div class="sh-2v" style="text-align:center; font-size:0.82rem;">padding: 8px 40px — pouco em cima, muito nas laterais</div>
+                <div class="sh-4v" style="font-size:0.82rem;">padding: 4px 20px 12px 40px — cada lado diferente</div>
+            </div>
+        </div>
+
+        <!-- BORDER -->
+        <div class="variacao">
+            <h4>border — A borda visível da caixa</h4>
+            <div class="codigo">
+                <span class="comment">/* Shorthand: espessura | estilo | cor */</span><br>
+                <span class="prop">border</span>: <span class="val">3px solid #e74c3c</span>;   <span class="comment">/* linha sólida */</span><br>
+                <span class="prop">border</span>: <span class="val">3px dashed #3498db</span>;  <span class="comment">/* tracejada */</span><br>
+                <span class="prop">border</span>: <span class="val">3px dotted #27ae60</span>;  <span class="comment">/* pontilhada */</span><br>
+                <span class="prop">border-left</span>: <span class="val">8px solid #9b59b6</span>; <span class="comment">/* só à esquerda */</span><br>
+                <span class="prop">border-radius</span>: <span class="val">20px</span>;            <span class="comment">/* arredonda os cantos */</span>
+            </div>
+            <div class="demo demo-border">
+                <div class="b-solid">border: 3px solid — linha sólida</div>
+                <div class="b-dashed">border: 3px dashed — tracejada</div>
+                <div class="b-dotted">border: 3px dotted — pontilhada</div>
+                <div class="b-double">border: 6px double — dupla</div>
+                <div class="b-left">border-left: 8px solid — só à esquerda (padrão de citação)</div>
+                <div class="b-radius">border + border-radius: 20px — bordas arredondadas</div>
+            </div>
+        </div>
+
+        <!-- WIDTH E HEIGHT -->
+        <div class="variacao">
+            <h4>width e height — Largura e altura</h4>
+            <div class="codigo">
+                <span class="prop">width</span>: <span class="val">200px</span>;     <span class="comment">/* fixo */</span><br>
+                <span class="prop">width</span>: <span class="val">60%</span>;       <span class="comment">/* relativo ao pai */</span><br>
+                <span class="prop">max-width</span>: <span class="val">300px</span>;  <span class="comment">/* nunca passa disso */</span><br>
+                <span class="prop">height</span>: <span class="val">80px</span>;      <span class="comment">/* altura fixa */</span>
+            </div>
+            <div class="demo demo-wh">
+                <div class="w-fixo">width: 200px — sempre 200px</div>
+                <div class="w-porcent">width: 60% — 60% do pai</div>
+                <div class="w-max">max-width: 300px; width: 100% — cresce até 300px</div>
+                <div class="h-fixo" style="width:100%;">height: 80px — altura fixa</div>
+            </div>
+        </div>
+
+        <!-- BOX SIZING -->
+        <div class="variacao">
+            <h4>box-sizing — O problema que o reset resolve</h4>
+            <div class="codigo">
+                <span class="comment">/* SEM border-box: padding AUMENTA o tamanho total */</span><br>
+                <span class="sel">.caixa</span> { <span class="prop">box-sizing</span>: <span class="val">content-box</span>; <span class="prop">width</span>: <span class="val">200px</span>; <span class="prop">padding</span>: <span class="val">20px</span>; }
+                <span class="comment">/* Resultado: 200 + 20 + 20 + 5 + 5 = 250px no total! */</span><br><br>
+                <span class="comment">/* COM border-box: padding está INCLUÍDO no width */</span><br>
+                <span class="sel">.caixa</span> { <span class="prop">box-sizing</span>: <span class="val">border-box</span>; <span class="prop">width</span>: <span class="val">200px</span>; <span class="prop">padding</span>: <span class="val">20px</span>; }
+                <span class="comment">/* Resultado: 200px no total — previsível! */</span>
+            </div>
+            <div class="demo">
+                <div class="demo-boxsizing">
+                    <div class="sem-border-box">
+                        <strong>content-box (padrão antigo)</strong><br>
+                        width: 200px + padding: 20px + border: 5px<br>
+                        <em>Total real: 250px</em> 😱
+                    </div>
+                    <div class="com-border-box">
+                        <strong>border-box (nosso reset)</strong><br>
+                        width: 200px com padding e border incluídos<br>
+                        <em>Total real: 200px</em> ✅
+                    </div>
+                </div>
+            </div>
+            <div class="dica">
+                ✅ Por isso colocamos <code>* { box-sizing: border-box; }</code> no reset —
+                para que TODOS os elementos se comportem de forma previsível!
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 7: DISPLAY
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Display — Como os elementos ocupam espaço</h2>
+        <p class="subtitulo">
+            A propriedade display controla como um elemento se comporta no layout.
+            É uma das mais importantes do CSS.
+        </p>
+
+        <div class="variacao">
+            <h4>inline — Fica na mesma linha, não aceita width/height/margin vertical</h4>
+            <div class="codigo">
+                <span class="comment">/* &lt;span&gt;, &lt;a&gt;, &lt;strong&gt; são inline por padrão */</span><br>
+                <span class="sel">span</span> { <span class="prop">display</span>: <span class="val">inline</span>; } <span class="comment">/* margin-top é ignorado! */</span>
+            </div>
+            <div class="demo demo-display-inline">
+                <span>Span 1</span>
+                <span>Span 2</span>
+                <span>Span 3 — todos na mesma linha, margin-top ignorada</span>
+            </div>
+        </div>
+
+        <div class="variacao">
+            <h4>block — Ocupa a linha inteira, aceita width/height/margin</h4>
+            <div class="codigo">
+                <span class="comment">/* &lt;div&gt;, &lt;p&gt;, &lt;h1&gt; são block por padrão */</span><br>
+                <span class="sel">div</span> { <span class="prop">display</span>: <span class="val">block</span>; <span class="prop">width</span>: <span class="val">200px</span>; } <span class="comment">/* width funciona! */</span>
+            </div>
+            <div class="demo demo-display-block">
+                <div>Block 1</div>
+                <div>Block 2 — cada um em sua própria linha</div>
+                <div>Block 3 — width: 200px funciona</div>
+            </div>
+        </div>
+
+        <div class="variacao">
+            <h4>inline-block — O melhor dos dois mundos</h4>
+            <div class="codigo">
+                <span class="comment">/* Fica na mesma linha MAS aceita padding, margin e dimensões */</span><br>
+                <span class="sel">.botao</span> { <span class="prop">display</span>: <span class="val">inline-block</span>; <span class="prop">padding</span>: <span class="val">12px 20px</span>; }
+                <br><span class="comment">/* Usado em links estilizados como botão! */</span>
+            </div>
+            <div class="demo demo-display-inlineblock">
+                <span>Botão A</span>
+                <span>Botão B</span>
+                <span>Botão C — lado a lado, com padding funcionando</span>
+            </div>
+        </div>
+
+        <div class="variacao">
+            <h4>none — Esconde o elemento completamente (some do layout)</h4>
+            <div class="codigo">
+                <span class="sel">.escondido</span> { <span class="prop">display</span>: <span class="val">none</span>; } <span class="comment">/* elemento não ocupa espaço */</span>
+            </div>
+            <div class="demo demo-display-none">
+                <p>Parágrafo visível — normal.</p>
+                <p class="escondido">Este parágrafo tem display: none — você não me vê!</p>
+                <p>Próximo parágrafo — o anterior sumiu do layout completamente.</p>
+            </div>
+            <div class="alerta">
+                ⚠️ <code>display: none</code> remove o elemento do layout (não ocupa espaço).
+                <code>visibility: hidden</code> esconde mas mantém o espaço. São coisas diferentes!
+            </div>
+        </div>
+
+        <table class="tabela-aula" style="margin-top:16px;">
+            <thead><tr><th>Display</th><th>Fica na mesma linha?</th><th>Aceita width/height?</th><th>Aceita margin vertical?</th></tr></thead>
+            <tbody>
+                <tr><td><code>inline</code></td><td>✅ Sim</td><td>❌ Não</td><td>❌ Não</td></tr>
+                <tr><td><code>block</code></td><td>❌ Não (ocupa a linha)</td><td>✅ Sim</td><td>✅ Sim</td></tr>
+                <tr><td><code>inline-block</code></td><td>✅ Sim</td><td>✅ Sim</td><td>✅ Sim</td></tr>
+                <tr><td><code>none</code></td><td colspan="3">Elemento removido do layout</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- =====================================================
+         CONCEITO 8: PSEUDO-CLASSES
+         ===================================================== -->
+    <div class="conceito">
+        <h2>Pseudo-classes — Estilo baseado em estados</h2>
+        <p class="subtitulo">
+            Pseudo-classes aplicam estilos quando o elemento está em um determinado estado —
+            o mouse está sobre ele, o campo está selecionado, etc.
+        </p>
+
+        <div class="codigo">
+            <span class="comment">/* Sintaxe: seletor:pseudo-classe { ... } */</span><br>
+            <span class="sel">a</span><span class="sel-b">:hover</span>  { <span class="prop">color</span>: <span class="val">red</span>; }         <span class="comment">/* mouse em cima */</span><br>
+            <span class="sel">input</span><span class="sel-b">:focus</span> { <span class="prop">border-color</span>: <span class="val">blue</span>; }  <span class="comment">/* campo ativo */</span><br>
+            <span class="sel">a</span><span class="sel-b">:visited</span>{ <span class="prop">color</span>: <span class="val">purple</span>; }      <span class="comment">/* link já visitado */</span><br>
+            <span class="sel">li</span><span class="sel-b">:first-child</span> { <span class="prop">color</span>: <span class="val">red</span>; }  <span class="comment">/* primeiro filho */</span><br>
+            <span class="sel">li</span><span class="sel-b">:nth-child(even)</span> { <span class="prop">background</span>: <span class="val">#eee</span>; } <span class="comment">/* linhas pares */</span>
+        </div>
+
+        <!-- :hover -->
+        <div class="variacao">
+            <h4>:hover — Passe o mouse sobre os botões</h4>
+            <div class="demo">
+                <a class="btn-hover-demo">Cor muda no hover</a>
+                <a class="btn-hover-demo btn-hover-cor">Cor diferente</a>
+                <a class="btn-hover-demo btn-hover-opac">Fica transparente</a>
+                <a class="btn-hover-demo btn-hover-sobe">Sobe com sombra</a>
+            </div>
+        </div>
+
+        <!-- :focus -->
+        <div class="variacao">
+            <h4>:focus — Clique no campo e veja o efeito</h4>
+            <div class="codigo">
+                <span class="sel">input</span><span class="sel-b">:focus</span> {<br>
+                &nbsp;&nbsp;<span class="prop">border-color</span>: <span class="val">#3498db</span>;<br>
+                &nbsp;&nbsp;<span class="prop">outline</span>: <span class="val">none</span>; <span class="comment">/* remove borda padrão do navegador */</span><br>
+                &nbsp;&nbsp;<span class="prop">box-shadow</span>: <span class="val">0 0 0 3px rgba(52,152,219,0.2)</span>; <span class="comment">/* halo azul */</span><br>
+                }
+            </div>
+            <div class="demo">
+                <input class="input-focus-demo" type="text" placeholder="Clique aqui e veja o :focus em ação">
+                <input class="input-focus-demo" type="text" placeholder="Este também tem :focus">
+            </div>
+        </div>
+
+        <!-- :nth-child bônus -->
+        <div class="variacao">
+            <h4>:nth-child — Estilize linhas alternadas (zebra) — bônus!</h4>
+            <div class="codigo">
+                <span class="sel">li</span><span class="sel-b">:nth-child(odd)</span>   { <span class="prop">background</span>: <span class="val">#eaf4fb</span>; } <span class="comment">/* ímpares */</span><br>
+                <span class="sel">li</span><span class="sel-b">:nth-child(even)</span>  { <span class="prop">background</span>: <span class="val">#d6eaf8</span>; } <span class="comment">/* pares */</span><br>
+                <span class="sel">li</span><span class="sel-b">:first-child</span>      { <span class="prop">border-top</span>: <span class="val">3px solid #3498db</span>; }<br>
+                <span class="sel">li</span><span class="sel-b">:last-child</span>       { <span class="prop">border-bottom</span>: <span class="val">3px solid #3498db</span>; }
+            </div>
+            <div class="demo">
+                <ul class="lista-nth" style="list-style: none;">
+                    <li>Item 1 — :first-child + :nth-child(odd)</li>
+                    <li>Item 2 — :nth-child(even)</li>
+                    <li>Item 3 — :nth-child(odd)</li>
+                    <li>Item 4 — :nth-child(even)</li>
+                    <li>Item 5 — :last-child + :nth-child(odd)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="rodape-aula">
+        <p>✅ Aula 1 concluída — <strong>CSS Base</strong></p>
+        <p style="margin-top: 8px; font-size: 0.9rem;">
+            Próxima aula: <strong>Medidas</strong> — px, rem, em, %, vh e vw
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
