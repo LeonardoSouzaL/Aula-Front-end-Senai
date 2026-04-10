@@ -1,0 +1,11 @@
+/* Importando fontes  */
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Reset pagina */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
