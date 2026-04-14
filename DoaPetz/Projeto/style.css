@@ -73,10 +73,6 @@ li.cadastrar a:hover {
     padding: 32px;
 }
 
-.imagens-petz {
-    display: flex;
-}
-
 .anuncio-petz {
     display: flex;
     flex-direction: column ;
@@ -114,3 +110,10 @@ li.cadastrar a:hover {
     align-self: center;
     text-decoration: none;
 }
+
+.segunda-secao {
+    background-color: #FFCCDB;
+    display: flex;
+    align-content: center;
+}
+
