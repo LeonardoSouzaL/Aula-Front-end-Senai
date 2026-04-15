@@ -112,8 +112,117 @@ li.cadastrar a:hover {
 }
 
 .segunda-secao {
-    background-color: #FFCCDB;
     display: flex;
-    align-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #ec768640;
+    height: 500px;
 }
 
+.cachorros, .gatos, .hamster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.botao_cachorro, .botao_gato, .botao_hamster {
+    font-size: 19px;
+    font-family: 'Mochiy Pop One', sans-serif;
+    padding: 15px 72px;
+    background-color: #ff950d;
+    color: #f5f5f5;
+    border-radius: 10px;
+    border: 1px solid #f5f5f5;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terceira-secao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+}
+
+.subtitulo {
+    font-size: 2.5rem;
+    font-family: 'Mochiy Pop One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px;
+}
+
+.conteudos {
+    display: flex;
+    gap: 200px;
+}
+
+.depoimentos {
+    display: flex;
+    /* gap: 25vw; */
+    height: 200px;
+    background-color: #c3c2c7;
+    border-radius: 8px;
+}
+
+.texto-depoimentos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    margin-left: 20px;
+}
+
+.footer {
+    background-color: #ff950d;
+}
+
+.conteudo-radape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    margin: 0 auto;
+    padding: 12px;
+    font-weight: 500;
+}
+
+.lista ul {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 1.2rem;
+    color: #f5f5f5;
+}
+
+.redes-sociais {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #f5f5f5;
+    gap: 10px;
+}
+
+.copyrigth {
+    padding-bottom: 16px;
+    text-align: center;
+    color: #f5f5f5;
+}
+
+.imagens-sociais {
+    display: flex;
+    gap: 0 8px;
+    align-items: center;
+    justify-content: space-between;
+}
