@@ -166,7 +166,18 @@ if (Number.isNaN(pesoUsuario) || Number.isNaN(altura))  {
 } else if(altura > 3){
     alert("Altura parece estar errada!")
 } else {
-    const IMC = (altura**2) / pesoUsuario
+    const IMC = (altura**2) / pesoUsuario;
+    alert(`Seu IMC: ${IMC.toFixed(2)}`);
+
+    if (IMC < 18.5) {
+        alert("Abaixo do Peso!")
+    } else if (IMC < 25) {
+        alert("Peso Normal!")
+    } else if (IMC < 30){
+        alert("Sobrepeso!")
+    } else {
+        alert("Obesidade!")
+    }
 }
 
 
