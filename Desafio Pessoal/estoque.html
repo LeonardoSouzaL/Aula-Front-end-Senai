@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque</title>
+
+    <link rel="stylesheet" href="estoque.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>📦 Controle de Estoque</h2>
+
+        <!-- Selecionar produto -->
+        <select id="produtoSelect"></select>
+
+        <button onclick="verProduto()">Ver estoque</button>
+
+        <!-- Entrada de quantidade -->
+        <input type="number" id="quantidade" placeholder="Quantidade">
+
+        <button onclick="adicionar()">Adicionar</button>
+        <button onclick="retirar()">Retirar</button>
+
+        <hr>
+
+        <!-- Cadastro de novo produto -->
+        <input type="text" id="novoProduto" placeholder="Novo produto">
+        <input type="number" id="qtdNovo" placeholder="Quantidade inicial">
+
+        <button onclick="cadastrar()">Cadastrar Produto</button>
+
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p id="popup-msg"></p>
+            <button onclick="fecharPopup()">Fechar</button>
+        </div>
+    </div>
+    <script>
+        const estoque = {
+            notebook: 15,
+            mouse: 50,
+            teclado: 30,
+            monitor: 8,
+            webcam: 22
+        };
+
+        const select = document.getElementById("produtoSelect");
+        const resultado = document.getElementById("resultado");
+
+
+        // Inicializa
+        atualizarLista();
+        function mostrarPopup(msg) {
+            document.getElementById("popup-msg").innerText = msg;
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function fecharPopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        // Atualiza lista
+        function atualizarLista() {
+            select.innerHTML = "";
+            for (let produto in estoque) {
+                let option = document.createElement("option");
+                option.value = produto;
+                option.textContent = produto;
+                select.appendChild(option);
+            }
+        }
+
+        // Ver produto
+        function verProduto() {
+            let produto = select.value;
+            let qtd = estoque[produto];
+
+            if (qtd < 10) {
+                mostrarPopup(`⚠ ${produto}: ${qtd} unidades.\n (baixo estoque)`);
+            } else {
+                mostrarPopup(`${produto}: ${qtd} unidades`);
+            }
+        }
+
+        // Adicionar
+        function adicionar() {
+            let produto = select.value;
+            let qtd = parseInt(document.getElementById("quantidade").value);
+
+            if (qtd > 0) {
+                estoque[produto] += qtd;
+                mostrarPopup("Produto adicionado com sucesso!");
+            } else {
+                mostrarPopup("Quantidade inválida!");
+            }
+        }
+
+        // Retirar
+        function retirar() {
+            let produto = select.value;
+            let qtd = parseInt(document.getElementById("quantidade").value);
+
+            if (qtd > 0 && qtd <= estoque[produto]) {
+                estoque[produto] -= qtd;
+                mostrarPopup("Produto retirado com sucesso!");
+            } else {
+                mostrarPopup("Erro ao retirar produto!");
+            }
+        }
+
+        // Cadastrar novo produto
+        function cadastrar() {
+            let nome = document.getElementById("novoProduto").value.toLowerCase();
+            let qtd = parseInt(document.getElementById("qtdNovo").value);
+
+            if (estoque[nome] === undefined && qtd >= 0) {
+                estoque[nome] = qtd;
+                atualizarLista();
+                mostrarPopup(`Produto "${nome}" cadastrado!`);
+            } else {
+                mostrarPopup("Produto já existe ou valor inválido!");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

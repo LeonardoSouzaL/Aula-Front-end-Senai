@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="menu.css">
+    <title>Login-Screen</title>
+
+
+</head>
+
+<body>
+    <main class="container">
+        <form>
+            <h1>Login</h1>
+            <div class="inputBox">
+                <input placeholder="Username" type="email">
+                <i class="bx bxs-user"></i>
+            </div>
+            <div class="inputBox">
+                <input placeholder="Password" type="password">
+                <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <div class="rememberForgot">
+                <label>
+                    <input type="checkbox">
+                    Remember me
+                </label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login">Login</button>
+
+            <div class="registerLink">
+                <p>Don't have an account? <a href="#">Register</a></p>
+            </div>
+        </form>
+    </main>
+    <script>
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // impede recarregar a página
+
+            const email = document.querySelector('input[type="email"]').value;
+            const senha = document.querySelector('input[type="password"]').value;
+
+            // Validação simples
+            if (email && senha) {
+                // aqui você pode validar de verdade depois
+                window.location.href = "estoque.html";
+            } else {
+                alert("Preencha todos os campos!");
+            }
+        });
+    </script>
+</body>
+
+</html>

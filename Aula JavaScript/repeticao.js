@@ -251,7 +251,7 @@ for (const chave in aluno) {
     const valor = aluno[chave]
     console.log(`${chave}: ${valor}`)
 }
-*/
+
 
 // Estoque de produtos
 const estoque = {
@@ -272,3 +272,4 @@ for(const produto in estoque){
         console.log(`${produto}: ${quantidade}`)
     }
 }
+*/
