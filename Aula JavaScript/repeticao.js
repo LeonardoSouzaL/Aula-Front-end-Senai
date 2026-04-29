@@ -272,4 +272,114 @@ for(const produto in estoque){
         console.log(`${produto}: ${quantidade}`)
     }
 }
+
+
+// Carrinho de compra
+
+// Arry
+const carrinho = [
+    {produto: "Camiseta", preco: 49.90, quantidade: 2},
+    {produto: "Calça Jeans", preco: 129.90, quantidade: 1},
+    {produto: "Tenis", preco: 500.90, quantidade: 1},
+];
+
+let total = 0;
+
+console.log("Carrinho de Compras: \n");
+
+for (const item of carrinho) {
+    const subtotal = item.preco * item.quantidade;
+
+    total += subtotal
+
+    console.log(`${item.produto} (${item.quantidade}X) - R$ ${subtotal.toFixed(2)}`)
+}
+
+console.log("\n" + "=".repeat(40));
+console.log(`TOTAL: R$ ${total.toFixed(2)}`);
+
+
+//Break
+const numeros = [5, 12, 8, 3, 19, 7, 25];
+
+const procurado = 19;
+
+console.log("Procurando o número", procurado);
+
+for (const num of numeros) {
+    console.log("Verificando:", num);
+
+    if (num === procurado) {
+        console.log("Encontrado!!")
+        break;
+    }
+}
+console.log("Loop Terminou!!");
+
+
+// Senha com limite de 3 tentativas
+
+const senhaCorreta = "abc123";
+
+const maxTentativas =  3;
+
+for (let tentativas = 1; tentativas <= maxTentativas; tentativas++) {
+    const senha = prompt(`Tentativas: ${tentativas}/${maxTentativas} - Digite sua Senha: `)
+
+    if (senha === senhaCorreta) {
+        console.log("Acesso Liberado!!")
+        break
+    } else {
+        console.log("Senha Incorreta!!");
+        
+        if (tentativas === maxTentativas){
+            console.log("Conta Bloqueada!!")
+        }
+    } 
+}
+
+
+// Continue
+
+for(let i = 1; i <= 10; i++){
+    if (i % 2 === 0) {
+        continue;
+    }
+    console.log(i)
+}
+
+
+const alunos = [
+    {nome: "Leonardo", nota: 8.5},
+    {nome: "Bruno", nota: 5.0},
+    {nome: "Carlos", nota: 9.0},
+    {nome: "Diana", nota: 4.5},
+    {nome: "Eduado", nota: 7.5},
+];
+console.log("Alunos Aprovados: \n");
+for (const aluno of alunos){
+    if (aluno.nota < 7) {
+        continue;
+    }
+    console.log(`${aluno.nome} - Nota: ${aluno.nota}`);
+}
+
+
+const frase = prompt("Digite uma frase:");
+
+const vogais = "aeiouAEIOU";
+
+let vogaisEcontradas = [];
+
+let contador = 0;
+
+for (const letra of frase) {
+    if (vogais.includes(letra)){
+        contador++
+        vogaisEcontradas.push(letra)
+    }
+}
+console.log(`\n Frase: "${frase}"`);
+console.log(`Vogais encontrada: ${contador}`);
+console.log(`Vogais foram: ${vogaisEcontradas}`)
 */
