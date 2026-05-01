@@ -210,7 +210,7 @@ const num = numero.reduce((acc, numeros)=>{
     return acc * numeros
 }, 1)
 console.log(num);
-*/
+
 
 const carrinho = [
     {produto:"Mouse", perco:50},
@@ -221,3 +221,10 @@ const soma = carrinho.reduce((acc, cont) =>{
     return acc + cont.perco;
 }, 0);
 console.log(soma)
+*/
+
+const palavras = ["oi","javascript","html"];
+const qtdLetra = palavras.reduce((acc, count) =>{
+    return acc + count.length;  
+}, 0);
+console.log(qtdLetra);
