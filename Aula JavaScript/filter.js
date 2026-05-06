@@ -221,10 +221,210 @@ const soma = carrinho.reduce((acc, cont) =>{
     return acc + cont.perco;
 }, 0);
 console.log(soma)
-*/
 
 const palavras = ["oi","javascript","html"];
 const qtdLetra = palavras.reduce((acc, count) =>{
     return acc + count.length;  
 }, 0);
 console.log(qtdLetra);
+
+// Use o Reduce para descobrir: qual o maior número do array.
+const numeros = [10,45,7,99,32];
+const maiorNum = numeros.reduce((acc, numero)=>{
+     if (numero > acc){
+        return numero;
+     }
+     return acc;
+}, numeros[0]);
+console.log(maiorNum);
+
+const pordutos = [
+    {nome: "Mouse", preco: 50},
+    {nome: "Teclado", preco: 200},
+    {nome: "Monitor", preco: 900},
+    {nome: "Notebook", preco: 3000},
+];
+const resultado = pordutos.filter((porduto)=>{
+    return porduto.preco > 100;
+})
+.map((porduto)=>{
+    return porduto.nome;
+});
+console.log(resultado);
+
+const filmes = [
+    {nome:"Vingadores", nota: 9},
+    {nome:"Batman", nota: 7},
+    {nome:"Dragon Ball", nota: 10},
+    {nome:"Matrix", nota: 8},
+]
+//Use filter para pegar notas >= 8
+//Use o map para pegar apenas nomes:
+//Use o find para encontrar o "Batman"
+//Use o reduce para somar todas as notas
+const filtro = filmes.filter((filme)=>{
+    return filme.nota >= 8;
+})
+.map((filme)=>{
+    return filme.nome;
+}) 
+console.log(`Os filmes com a nota maior que 7 são: ${filtro}`);
+
+const filtros = filmes.find((Bat)=>{
+    return Bat.nome === "Batman";
+})
+console.log(filtros);
+
+const somaNotas = filmes.reduce((acc,filme)=>{
+    return acc + filme.nota;
+});
+console.log(somaNotas);
+
+
+//Switch 
+const dia = 3;
+
+switch (dia) {
+    case 1:
+        console.log("Domingo");
+        break;
+    case 2:
+        console.log("Segunda");
+        break;
+    case 3:
+        console.log("Terça");
+        break;
+    default:
+        console.log("Dia Invalido!!");
+        break;
+}
+
+
+const n1 = 10;
+const n2 = 5;
+
+const operacao = "+"
+
+switch (operacao) {
+    case "+":
+        console.log(n1 + n2);
+        break;
+    case "-":
+        console.log(n1 - n2);
+        break;
+    case "*":
+        console.log(n1*n2);
+        break;
+    case "/":
+        console.log(n1/n2);
+        break;
+    default:
+        console.log("Operação inválida !!")
+        break;
+}
+
+
+// Faça um sistema de notas:
+// A -> Excelente
+// B -> Bom
+// C -> Regular
+// D -> Ruim
+
+const notaUsu = prompt("Digite sua nota: (A, B, C ou D)")
+
+switch (notaUsu) {
+    case "A": 
+        console.log("Excelente");
+        break;
+    case "B":
+        console.log("Bom");
+        break;
+    case "C":
+        console.log("Regular");
+        break;
+    case "D":
+        console.log("Ruim");
+        break
+    default:
+        console.log("Nota Inválida !!")
+        break;
+}
+*/
+/* 
+// Faça um sistema de notas:
+// A -> Excelente
+// B -> Bom
+// C -> Regular
+// D -> Ruim
+
+const A = 100
+const B = 80
+const C = 60
+const D = 30
+
+let notaUsu = prompt("Digite sua nota:")
+if (notaUsu >= 81) {
+    notaUsu = 100
+} else if (notaUsu >= 61 && notaUsu <= 80){
+    notaUsu = 80
+} else if (notaUsu >= 31 && notaUsu <= 60){
+    notaUsu = 60
+} else {
+    notaUsu = 30
+}
+switch (notaUsu) {
+    case 100: 
+        alert("Excelente");
+        break;
+    case 80:
+        alert("Bom");
+        break;
+    case 60:
+        alert("Regular");
+        break;
+    case 30:
+        alert("Ruim");
+        break
+    default:
+        alert("Nota Inválida !!")
+        break;
+}
+ */
+
+// Crie um sistema de menu de videogame:
+
+//1 -> Jogar
+//2 -> Configurações
+//3 -> Créditos
+//4 -> Sair
+
+let opcao;
+do {
+       opcao = Number(prompt(
+        "=========== SISTEMA DE ESTOQUE ===========\n" +
+        "1 - Jogar\n" +
+        "2 - Configurações\n" +
+        "3 - Créditos\n" +
+        "4 - Sair\n" +
+        "=========================================\n" +
+        "Escolha uma opção:"
+        ));
+        
+        switch (opcao) {
+            case 1:
+                alert("Iniciando jogo, Aguarde...");
+                break;
+            case 2:
+                alert("Entrando em Configurações...");
+                break;
+            case 3:
+                alert("Carregando Créditos...")
+                break;
+            case 4:
+                alert("Obrigado por jogar, volte sempre !!");
+                break
+            default:
+                alert("Opção Inválida !!")
+                break;
+        }
+} while (opcao !== 4);
